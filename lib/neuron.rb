@@ -1,7 +1,7 @@
 class Neuron
   def initialize(options={})
     @input_neurons = []
-    add_input(options[:input_neurons]) if options[:input_neurons]
+    add_input(*options[:input_neurons]) if options[:input_neurons].is_a? Array
   end
   
   def add_input(*input_neurons)
