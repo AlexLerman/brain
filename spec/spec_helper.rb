@@ -2,7 +2,7 @@ require 'spork'
 require 'rspec'
 
 ### App
-require './lib/neuron'
+require File.expand_path("../../config/init", __FILE__)
 
 Spork.prefork do
   # this block will run when Spork starts up
@@ -12,6 +12,5 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  # no-op for now
-  # this block will run before each test run
+  #require File.expand_path("../../config/init", __FILE__)
 end
