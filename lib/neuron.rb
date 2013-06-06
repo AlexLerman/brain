@@ -1,7 +1,10 @@
 class Neuron
   LEARNING_CONSTANT = 0.05
   
+  attr_reader :input_synapses
+  
   def initialize(options={})
+    super
     @input_synapses = []
     add_input(*options[:input_synapses]) if options[:input_synapses].is_a? Array
   end
@@ -11,7 +14,11 @@ class Neuron
   end
   
   def activation
-    @activation ||= ease(@input_synapses.sum(&:activation).to_f)
+    @activation ||= ease(@input_synapses.sum { |s| s.activation*s.weight }.to_f)
+  end
+  
+  def activation= new_activation
+    @activation = new_activation
   end
   
   def connect src, weight=nil
@@ -36,6 +43,12 @@ class Neuron
   def ease(x)
     x
   end
+  
+  def to_s
+    "#<yo dawg i herd u liek recursion so i STOP RIGHT THERE>"
+  end
+  
+  alias_method :inspect, :to_s
   
   alias_method :add_inputs, :add_input
 end

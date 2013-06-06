@@ -1,6 +1,7 @@
+require 'active_support/core_ext'  
+
 files = Dir.glob(File.expand_path("../../lib/**/*.rb", __FILE__)) +
   Dir.glob(File.expand_path("../../app/**/*.rb", __FILE__))
-
 
 files.each do |f|
   require_name = f.gsub(/.rb$/, '')
